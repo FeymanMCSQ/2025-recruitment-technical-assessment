@@ -3,7 +3,7 @@
 
 # DevSoc Subcommittee Recruitment: Backend
 
-> **YOU DO NOT NEED TO COMPLETE ALL PARTS.** 
+> **YOU DO NOT NEED TO COMPLETE ALL PARTS.**
 > Complete the parts that you think best reflect your skills (feel free to do any order).
 
 ## Background
@@ -35,8 +35,6 @@ For this task you should complete the `parse_handwriting()` function, that takes
   "alpHa alFRedo -> Alpha Alfredo"
   ```
 
-
-
 - There should only be **one** whitespace between words. If there are multiple whitespaces between words they should be squashed down to a singular whitespace. Leading and trailing whitespace should be removed
 
   ```
@@ -66,7 +64,7 @@ Each `recipe` has additionally has `requiredItems`; a **list** of a cookbook ent
     {
       "name": "Mayonaise",
       "quantity": 1
-    }
+    },
     {
       "name": "Lettuce",
       "quantity": 3
@@ -106,7 +104,6 @@ An `ingredient` only has an extra cookTime field (`int`), which must be greater 
 
 ```
 
-
 Your task for this part is to implement this endpoint and store the cookbook entries. Upon a successful operation you must return a `HTTP 200` status code and an empty response body.
 
 If any of the following conditions are violated, the cookbook should return a `HTTP 400` status code and the entry is not added to the cookbook:
@@ -124,16 +121,20 @@ There are two template folders (python and typescript) each of them with a stub 
 
 Opening a restaurant with CS students has its consequences... our sous chefs don't seem to know how to cook either :'( However, they should be very good at reading documentation right!? To make this easier for them, we want to return a summary of the recipe given it's name.
 
-The cookbook provides a very useful **HTTP GET endpoint** that takes in one query argument: the desired recipe's **name**. 
+The cookbook provides a very useful **HTTP GET endpoint** that takes in one query argument: the desired recipe's **name**.
+
 ```
 /summary?name=<insert name here>
 ```
+
 A recipe summary has the following fields
+
 - **name** (`str`): The name of the recipe.
 - **cookTime** (`int`): The total cooking time, which is the sum of the cookTimes of all the required ingredients.
 - **ingredients** (`RequiredItem[]`): A list of only the base ingredients for the recipe. If a `RequiredItem` is itself a recipe, its ingredients should be included recursively as base ingredients.
 
-For example, "Skibidi Spaghetti" is composed of Meatballs, Pasta, and Tomatoes: 
+For example, "Skibidi Spaghetti" is composed of Meatballs, Pasta, and Tomatoes:
+
 ```json
 {
   "type": "recipe",
@@ -205,7 +206,6 @@ For example, "Skibidi Spaghetti" is composed of Meatballs, Pasta, and Tomatoes:
 
 Since 'Meatball' and 'Pasta' are recipes, we should continue searching for their ingredients until we reach the base ingredients, and the resulting cookTime takes into account their quantities and individual cook times.
 
-
 Searching for "Skibidi Spaghetti" will hence return the following result:
 
 ```json
@@ -239,19 +239,19 @@ The endpoint should additionally return with status code `400` if:
 - The searched name is NOT a recipe name (ie. an ingredient).
 - The recipe contains recipes or ingredients that aren't in the cookbook.
 
-
 ## Assumptions
+
 - For cases where a `HTTP 400` status code should be returned, the autotests focus only on the correct status code being returned and do not check or consider error messages.
 - Feel free to use any additional libraries, packages, or imports that you find necessary. (make sure that the package/package lock or requirements.txt files are updated accordingly)
 
-
 ## Getting set up
+
 A basic flask/express application has been set up for you in `[py|ts]_template/devdonalds.py`, including some endpoints. To run it, enter `./run.sh` in the `[py|ts]_template` folder, and a server should be spun up on port 8080.
 
 The script assumes you have the required runtimes installed for your chosen language.
 
-
 ## Testing
+
 Basic assert-based tests are provided in the `autotester` directory, but they are not comprehensive, and we recommend doing some manual testing to ensure your solutions are correct.
 
 In each of the `[py|ts]_template/` directories, a `test.sh` script has been provided.
@@ -265,13 +265,17 @@ You can run your implementation against the given tests by running `./test.sh` f
 The script once again assumes you have the required runtimes installed for your chosen language.
 
 ### Manual
+
 If you would prefer to manually run the autotests. First start up your server in the `[py|ts]_template/` directory in one terminal, and then in another window:
+
 ```
 cd autotester
 npm i
 npm run test(_part[1|2|3])
 ```
+
 Note that you will need to restart the server (since the server put in some dummy data) to re-run the tests.
 
 ## Submission
+
 To submit, push your solutions to your fork and submit a link to the fork in the application form. Your submissions will be reviewed by our Project Directors and considered holistically, taking in to account correctness, efficiency and code style.
